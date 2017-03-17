@@ -15,13 +15,13 @@ var lower_octave = [65, 90, 83, 88, 67, 70, 86, 71, 66, 78, 74, 77, 75, 188, 76,
 var upper_octave = [49, 81, 50, 87, 69, 52, 82, 53, 84, 89, 55, 85, 56, 73, 57, 79, 80, 189, 219, 187, 221]
 
 //note markers
-var cursor_low =  [12, 3, 4, 6, 8, 9, 11, 13, 15, 16, 18, 20, 21, 23, 25, 27, 28, 30, 32, 33, 35, 37, 39, 40, 42, 44, 45, 47, 49, 51, 52, 54, 56, 57, 59, 61 , 63, 64, 66, 68, 69, 71, 73, 75, 76, 78, 80, 81, 83, 85, 87, 88]
+var cursor_low =  [1, 3, 4, 6, 8, 9, 11, 13, 15, 16, 18, 20, 21, 23, 25, 27, 28, 30, 32, 33, 35, 37, 39, 40, 42, 44, 45, 47, 49, 51, 52, 54, 56, 57, 59, 61 , 63, 64, 66, 68, 69, 71, 73, 75, 76, 78, 80, 81, 83, 85, 87, 88]
 var cursor_high = {2: 15, 5: 62, 7: 89, 10: 135, 12: 161, 14: 186, 17: 233, 19: 259, 22: 303, 24: 329,  26: 353, 29: 400, 31: 426, 34: 470,  36: 496,  38: 522, 41: 566,  43: 592, 46: 636,  48: 662,  50: 688, 53: 732,  55: 758, 58: 802,  60: 828,  62: 854, 65: 898,  67: 924, 70: 970,  72: 996,  74:1022, 77: 1067, 79: 1093, 82: 1138, 84: 1164, 86: 1190 } 
 
 function preload() {
     game.load.image('keys', 'assets/img/p.png')
     game.load.image('body', 'assets/img/bg.png')
-    game.load.audio('notes', ['assets/aud/long-key.mp3','assets/aud/long-key.ogg'] ) 
+    game.load.audio('notes', ['assets/aud/keys.mp3','assets/aud/keys.ogg'] ) 
 }
 
 function create() {
@@ -32,9 +32,11 @@ function create() {
     notes  = game.add.audio('notes')
     notes.allowMultiple = true
     secs = 0.0
-    duration = 1
-    for (i=1; i<=88; i++)
+    duration = 1.5
+    for (i=1; i<=88; i++){
         notes.addMarker(i, secs++, duration)
+        secs++
+    }
 
     game.input.keyboard.onDownCallback = function() {
         pressed = game.input.keyboard.event.keyCode
