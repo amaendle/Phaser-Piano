@@ -1,5 +1,5 @@
 # Ting Ting
-A  piano in less than 100 lines of JS (using Phaser.js)  
+An 88 keys piano (with keyboard and mouse support) built with Phasor.js   
 
 ![piano](Ting%20Ting/assets/img/ting_ting.png)
 #### Instruction:
