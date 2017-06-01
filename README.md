@@ -18,5 +18,21 @@ k  5  o     b  w  8      j  5  9     .  l  .  l
 k  5  o     b  w  8      j  5  9     .  l  .  l 
 k  5  o     b  w  8      j  5  9     .  l   k  j  
 b  wt8      j j  479     k  58o      k k k  580
+```  
+
+* [Requiem For a Dream (beginner)](https://soundcloud.com/wasi0013/requiem-for-a-dream)
+
 ```
+<-<-<-<- mu ->  5g vr  <-  mu  -> 5g vr <- mu -> 5g vr  mu -> 5g vr <- mu -> 5g vr mu -> 5g vr
+mu9 i u r 9 i u r 9g5 i u r vrp 9 i 9
+mu9 i u r 9 i u r 9g5 i u r vrp 9 i 9
+mu9 i u r 9 i u r 9g5 i u r vrp 9 i 9
+<-
+mr9l i u r 9 i u r 9g5l i u r vj,p 9 i 9        
+mr9l i u r 9 i u r 9g5l i u r vj,p 9 i 9        
+mr9l i u r 9 i u r 9g5l i u r vj,p 9 i 9        
+``` 
+**Note:**   _`<-` = left arrow) `->` =  right arrow. Letter without space should be pressed all at once(i.e mu9/9g5/... etc three keys together at once!)_
+
+
 
