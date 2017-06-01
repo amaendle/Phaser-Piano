@@ -43,5 +43,6 @@ An 88 keys piano (with keyboard and mouse support) built with Phasor.js
 ```
 **Note:**   _`<-` = left arrow `->` =  right arrow. Letter without space should be pressed all at once(i.e mu9/9g5/... etc three keys together at once!)_
 
-
+---
+[Feel free to listen my album on Soundcloud 'Pianist with a PC Keyboard' and have fun! :)](https://soundcloud.com/wasi0013/sets/pianist-with-a-pc-keyboard)
 
