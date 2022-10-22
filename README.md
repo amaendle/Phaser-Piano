@@ -1,7 +1,7 @@
 # Ting Ting
 An 88 keys piano (with keyboard and mouse support) built with Phasor.js   
 
-![piano](Ting%20Ting/assets/img/ting_ting.png)
+![piano](assets/img/ting_ting.png)
 #### Instruction:
   * **for playing notes:** press `A-Z`, `0-9`, `-`, `=`, `'`, `,`. `/` 
   * **for shifting keys:** press `left/right arrow`  
@@ -9,7 +9,7 @@ An 88 keys piano (with keyboard and mouse support) built with Phasor.js
 **or, simply click on keys to play a note**
 
 
-#### Demo:  [Play it Online!](https://wasi0013.github.io/Phaser-Piano/)  
+#### Demo:  [Play it Online!](https://amaendle.github.io/Phaser-Piano/index2.html)  
 
 ### Some Piano Chords that you might try:  
 * [Guns & Roses Don't Cry Chord improvisation (recorded and tuned with audacity)](https://soundcloud.com/wasi0013/piano-bites)  
@@ -44,5 +44,5 @@ An 88 keys piano (with keyboard and mouse support) built with Phasor.js
 **Note:**   _`<-` = left arrow `->` =  right arrow. Letter without space should be pressed all at once(i.e mu9/9g5/... etc three keys together at once!)_
 
 ---
-[Feel free to listen my album on Soundcloud 'Pianist with a PC Keyboard' and have fun! :)](https://soundcloud.com/wasi0013/sets/pianist-with-a-pc-keyboard)
+
 
