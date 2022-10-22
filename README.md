@@ -9,7 +9,7 @@ An 88 keys piano (with keyboard and mouse support) built with Phasor.js
 **or, simply click on keys to play a note**
 
 
-#### Demo:  [Play it Online!](https://amaendle.github.io/Phaser-Piano/index2.html)  
+#### Demo:  [Play it Online!](https://amaendle.github.io/Phaser-Piano/index1.html)  
 
 ### Some Piano Chords that you might try:  
 * [Guns & Roses Don't Cry Chord improvisation (recorded and tuned with audacity)](https://soundcloud.com/wasi0013/piano-bites)  
