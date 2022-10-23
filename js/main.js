@@ -20,7 +20,8 @@ var cursor_low_whole =  [88]
 var cursor_low_right =  [3, 8, 15, 20, 27, 32, 39, 44, 51, 56, 63, 68, 75, 80, 87]
 var cursor_low_middle =  [6, 11, 13, 18, 23, 25, 30, 35, 37, 42, 47, 49, 54, 59, 61, 66, 71, 73, 78, 83, 85]
 var cursor_high = {2: 16, 5: 64, 7: 88, 10: 136, 12: 160, 14: 184, 17: 232, 19: 256, 22: 304, 24: 328,  26: 352, 29: 400, 31: 424, 34: 472,  36: 496,  38: 520, 41: 568,  43: 592, 46: 640,  48: 664,  50: 688, 53: 736,  55: 760, 58: 808,  60: 832,  62: 856, 65: 904,  67: 928, 70: 976,  72: 1000,  74:1024, 77: 1072, 79: 1096, 82: 1144, 84: 1168, 86: 1192 } 
-var topBox ;
+var topBox;
+var dragBox;
 var kbwidth = 3*1248;
 var kbheight =210*2;
 var ptactive=[];
@@ -301,17 +302,30 @@ function stop_note(audio_tag){
 }
 
 function drawDBox(){
-    var bounds = new Phaser.Rectangle(0-kbwidth+game.scale.width-50, 0, kbwidth-game.scale.width+100, game.scale.height);
+    var bounds = new Phaser.Rectangle(Math.min(0,0-kbwidth+game.scale.width-50), 0, Math.max(game.scale.width,2*kbwidth+pX+100), game.scale.height+100);
     topBox = game.add.graphics(pX-12, pY-98)
     topBox.lineStyle(0, 0x0000FF, 1)
     topBox.beginFill(0x000000, 1.0)
     topBox.drawRect(0, 0, kbwidth+25, 98)
-    topBox.endFill(0x000000, 1.0)
+    topBox.endFill()
     topBox.inputEnabled = true;
     topBox.input.boundsRect=bounds;
     topBox.input.useHandCursor = true;
     topBox.input.enableDrag();
     topBox.input.allowVerticalDrag = false;
+    //
+    /*dragBox = game.add.graphics(pX, pY-98)
+    dragBox.lineStyle(0, 0xFF00FF, 1)
+    dragBox.beginFill(0xaabbcc, 1.0)
+    dragBox.drawRect(0, 0, kbwidth+25, 30)
+    dragBox.endFill()
+    dragBox.inputEnabled = true;
+    //dragBox.anchor.set(0.5);
+    dragBox.input.boundsRect=bounds;
+    dragBox.input.useHandCursor = true;
+    dragBox.input.enableDrag(false, true);
+    dragBox.input.allowVerticalDrag = false;*/
+    //
     var graphics = game.add.graphics(0, 0)
     graphics.beginFill(0x000000, 1.0)
     graphics.drawRect(0, 98, kbwidth+25, kbheight+15)
