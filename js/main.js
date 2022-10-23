@@ -118,6 +118,7 @@ function create() {
      }   
      // dragbox
      drawDBox();
+     drawSlider();
      //create keys
     for (var i = 1; i <= 88; i++) {
       drawKey(i);
@@ -198,16 +199,23 @@ function activeover(ptr) {
     
     if(ptr.y<50) {
         if(ptr.x<50) {
-            game.scale.startFullScreen(false);      
-        } else {
-        kbwidth=1248*5*(ptr.x/game.scale.width)
-        }
-        game.world.removeAll();
-             drawDBox();
+            game.scale.startFullScreen(false);   
+            game.world.removeAll();
+            drawDBox();
+            //create keys
+            for (var i = 1; i <= 88; i++) {
+              drawKey(i);
+            }
+            drawSlider();
+        } //else {
+        //kbwidth=1248*5*(ptr.x/game.scale.width)
+        //}
+    //    game.world.removeAll();
+    //         drawDBox();
      //create keys
-    for (var i = 1; i <= 88; i++) {
-      drawKey(i);
-    }
+    //for (var i = 1; i <= 88; i++) {
+    //  drawKey(i);
+    //}
     }
 }
 
@@ -301,7 +309,50 @@ function stop_note(audio_tag){
             }
 }
 
+function dragSliderUpdate(sprite, pointer, dragX, dragY, snapPoint) {
+    kbwidth=1248*5*((dragSliderKnob.x-(game.scale.width*0.5-150)+50)/300)//(dragSliderKnob.x/game.scale.width)
+    //game.world.removeAll();
+    topBox.destroy(true); //Destroy the sprite.
+    topBox = null; //Remove the reference.
+    drawDBox();
+    //create keys
+    for (var i = 1; i <= 88; i++) {
+      drawKey(i);
+    }
+}
+
+function drawSlider(){
+    dragSlider = game.add.graphics(game.scale.width*0.5-150+0.5*40, pY-98-30)
+    dragSlider.lineStyle(0, 0xFF00FF, 1)
+    dragSlider.beginFill(0xaabbcc, 1.0)
+    dragSlider.drawRect(0, 0, 300-40, 10)
+    //dragSlider.endFill()
+    dragSlider.anchor.set(0.5);
+    //dragSlider.input.useHandCursor = true;
+    //
+    dragSliderKnob = game.add.graphics(game.scale.width*0.5, pY-98-30+5)
+    dragSliderKnob.lineStyle(0, 0xFF00FF, 1)
+    dragSliderKnob.beginFill(0xaabbcc, 1.0)
+    dragSliderKnob.drawCircle(0, 0, 40)
+    dragSliderKnob.endFill()
+    dragSliderKnob.inputEnabled = true;
+    dragSliderKnob.anchor.set(0.5);
+    var slidebounds = new Phaser.Rectangle(game.scale.width*0.5-150, 0, 300, game.scale.height);
+    dragSliderKnob.input.boundsRect=slidebounds;
+    dragSliderKnob.input.useHandCursor = true;
+    dragSliderKnob.input.enableDrag();//(false, true);
+    dragSliderKnob.input.allowVerticalDrag = false;
+    dragSliderKnob.events.onDragUpdate.add(dragSliderUpdate);
+    //dragSlider.addChild(text);
+    var style = { font: "bold 32px Arial", fill: "#fff", boundsAlignH: "center", boundsAlignV: "middle" };
+    var slidertext = game.add.text(game.scale.width*0.5-150+0.5*40-20, 10, "▫", style);
+    slidertext.setShadow(3, 3, 'rgba(0,0,0,0.5)', 2);
+    var slidertext = game.add.text(game.scale.width*0.5-150+0.5*40+260, 10, "◻", style);
+    slidertext.setShadow(3, 3, 'rgba(0,0,0,0.5)', 2);
+}
+
 function drawDBox(){
+    kbheight = game.scale.height;
     var bounds = new Phaser.Rectangle(Math.min(0,0-kbwidth+game.scale.width-50), 0, Math.max(game.scale.width,2*kbwidth+pX+100), game.scale.height+100);
     topBox = game.add.graphics(pX-12, pY-98)
     topBox.lineStyle(0, 0x0000FF, 1)
@@ -314,17 +365,6 @@ function drawDBox(){
     topBox.input.enableDrag();
     topBox.input.allowVerticalDrag = false;
     //
-    /*dragBox = game.add.graphics(pX, pY-98)
-    dragBox.lineStyle(0, 0xFF00FF, 1)
-    dragBox.beginFill(0xaabbcc, 1.0)
-    dragBox.drawRect(0, 0, kbwidth+25, 30)
-    dragBox.endFill()
-    dragBox.inputEnabled = true;
-    //dragBox.anchor.set(0.5);
-    dragBox.input.boundsRect=bounds;
-    dragBox.input.useHandCursor = true;
-    dragBox.input.enableDrag(false, true);
-    dragBox.input.allowVerticalDrag = false;*/
     //
     var graphics = game.add.graphics(0, 0)
     graphics.beginFill(0x000000, 1.0)
@@ -339,7 +379,7 @@ function drawDBox(){
     text.setTextBounds(0, 0, kbwidth+24, 100-2);
     topBox.addChild(text);
     
-    var text = game.add.text(10, 10, "⇱ ★▪▫ ◽◾ ◻◼", style);
+    var text = game.add.text(10, 10, "⇱", style);  //"⇱ ★▪▫ ◽◾ ◻◼", sty
     text.setShadow(3, 3, 'rgba(0,0,0,0.5)', 2);
     //text.setTextBounds(0, 0, kbwidth+24, 100-2);
 }
@@ -385,7 +425,7 @@ function drawDBox(){
  }
 
 function get_audio_tag(mX, mY){
-    mX=mX-topBox.x+38;
+    mX=mX-topBox.x+38; //topBox.x = pX-12
     if (mX >= pX){
         if (pY < mY && mY < pY+kbheight){
             if(mY < pY+(116/210)*kbheight){
