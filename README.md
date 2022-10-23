@@ -1,5 +1,7 @@
-# Ting Ting
-An 88 keys piano (with keyboard and mouse support) built with Phasor.js   
+# Phaser MultiTouchPiano
+An 88 keys piano (with keyboard, touch and mouse support) built with Phasor.js
+
+If you have trouble with multi touch in Windows 11 please deactivade the 3/4-finger touch gestures [as described here](https://learn.microsoft.com/de-de/troubleshoot/windows/win32/finger3or4-touch-interaction-no-longer-works).
 
 ![piano](assets/img/ting_ting.png)
 #### Instruction:
