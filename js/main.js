@@ -353,7 +353,8 @@ function drawSlider(){
 
 function drawDBox(){
     kbheight = game.scale.height;
-    var bounds = new Phaser.Rectangle(Math.min(0,0-kbwidth+game.scale.width-50), 0, Math.max(game.scale.width,2*kbwidth+pX+100), game.scale.height+100);
+    //var bounds = new Phaser.Rectangle(Math.min(0,0-kbwidth+game.scale.width-50), 0, Math.max(game.scale.width,2*kbwidth+pX+100), game.scale.height+100);
+    var bounds = new Phaser.Rectangle(Math.min(0,0-kbwidth+game.scale.width-50), 0, pX+100+kbwidth-Math.min(0,0-kbwidth+game.scale.width-50), game.scale.height+100);
     topBox = game.add.graphics(pX-12, pY-98)
     topBox.lineStyle(0, 0x0000FF, 1)
     topBox.beginFill(0x000000, 1.0)
