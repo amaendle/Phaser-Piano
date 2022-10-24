@@ -351,6 +351,22 @@ function drawSlider(){
     slidertext.setShadow(3, 3, 'rgba(0,0,0,0.5)', 2);
 }
 
+function drawCheckbox(){
+    chBox = game.add.graphics(game.scale.width*0.5-150+0.5*40+300+40, pY-98-50)
+    chBox.lineStyle(0, 0xFF00FF, 1)
+    chBox.beginFill(0xaabbcc, 1.0)
+    chBox.drawRect(0, 0, 40, 40)
+    //chBox.endFill()
+    chBox.anchor.set(0.5);
+    chBox.inputEnabled = true;
+    chBox.input.useHandCursor = true;
+    chBox.events.onInputDown.add(clicked, this);
+    //
+    var style = { font: "bold 32px Arial", fill: "#fff", boundsAlignH: "center", boundsAlignV: "middle" };
+    var chBoxTick = game.add.text(game.scale.width*0.5-150+0.5*40+300+40, 10, "✓", style);
+    chBoxTick.setShadow(3, 3, 'rgba(0,0,0,0.5)', 2);
+}
+
 function drawDBox(){
     kbheight = game.scale.height;
     //var bounds = new Phaser.Rectangle(Math.min(0,0-kbwidth+game.scale.width-50), 0, Math.max(game.scale.width,2*kbwidth+pX+100), game.scale.height+100);
@@ -395,6 +411,7 @@ function drawDBox(){
 // }
 
  function clicked(){
+    alert("alert");
      if (ptactive[0]==true) {alert();
             stop_note(ptnote[0]);
             ptactive[0]=false;
