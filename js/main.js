@@ -26,6 +26,7 @@ var kbwidth = 3*1248;
 var kbheight =210*2;
 var ptactive=[];
 var ptnote=[];
+var sustain = True;
 ptactive[1]=false; //mouse pointer
 ptactive[2]=false; //mouse pointer
 ptactive[3]=false; //touch pointer
@@ -362,7 +363,7 @@ function drawCheckbox(){
     chBox.anchor.set(0.5);
     chBox.inputEnabled = true;
     chBox.input.useHandCursor = true;
-    chBox.events.onInputDown.add(clicked, this);
+    chBox.events.onInputDown.add(cb_click, this);
     //
     var style = { font: "bold 32px Arial", fill: "#fff", boundsAlignH: "center", boundsAlignV: "middle" };
     var chBoxTick = game.add.text(game.scale.width*0.5-150+0.5*40+300+40, 10, "✓", style);
@@ -412,8 +413,15 @@ function drawDBox(){
 //     setTimeout(function (){graphics.destroy()}, 100)
 // }
 
+function cb_click(){
+    if (sustain == true) {
+        sustain = false;
+    } else {
+        sustain = true;
+    }
+    chBoxTick.visible = sustain;
+}
  function clicked(){
-    alert("alert");
      if (ptactive[0]==true) {alert();
             stop_note(ptnote[0]);
             ptactive[0]=false;
