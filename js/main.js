@@ -119,6 +119,7 @@ function create() {
      // dragbox
      drawDBox();
      drawSlider();
+     drawCheckbox();
      //create keys
     for (var i = 1; i <= 88; i++) {
       drawKey(i);
@@ -207,6 +208,7 @@ function activeover(ptr) {
               drawKey(i);
             }
             drawSlider();
+            drawCheckbox();
         } //else {
         //kbwidth=1248*5*(ptr.x/game.scale.width)
         //}
