@@ -1,6 +1,7 @@
-var game = new Phaser.Game("100%","99%", Phaser.AUTO, 'gameDiv', { preload: preload, create: create, update: update, render: render })
+var game = new Phaser.Game("100%","99%", Phaser.RESIZE, 'gameDiv', { preload: preload, create: create, update: update, render: render })
 //var game = new Phaser.Game(1350, 600, Phaser.AUTO, 'gameDiv', { preload: preload, create: create, update: update, render: render })
-
+//game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
+//game.scale.scaleMode = Phaser.ScaleManager.RESIZE; //EXACT_FIT;
 //shift octaves left / right
 var lower_offset = 24, upper_offset = 36, click_flag = false
 // piano bg co-ordinates
@@ -22,6 +23,7 @@ var cursor_low_middle =  [6, 11, 13, 18, 23, 25, 30, 35, 37, 42, 47, 49, 54, 59,
 var cursor_high = {2: 16, 5: 64, 7: 88, 10: 136, 12: 160, 14: 184, 17: 232, 19: 256, 22: 304, 24: 328,  26: 352, 29: 400, 31: 424, 34: 472,  36: 496,  38: 520, 41: 568,  43: 592, 46: 640,  48: 664,  50: 688, 53: 736,  55: 760, 58: 808,  60: 832,  62: 856, 65: 904,  67: 928, 70: 976,  72: 1000,  74:1024, 77: 1072, 79: 1096, 82: 1144, 84: 1168, 86: 1192 } 
 var topBox;
 var chBoxTick;
+var FSBox;
 var dragBox;
 var kbwidth = 3*1248;
 var kbheight =210*2;
@@ -200,27 +202,29 @@ function activeover(ptr) {
     ptnote[ptr.id]=audio_tag; //mouse pointer
     play_note(audio_tag);
     
-    if(ptr.y<50) {
+    /*if(ptr.y<50) {
         if(ptr.x<50) {
-            game.scale.startFullScreen(false);   
-            game.world.removeAll();
-            drawDBox();
-            //create keys
-            for (var i = 1; i <= 88; i++) {
-              drawKey(i);
-            }
-            drawSlider();
-            drawCheckbox();
-        } //else {
-        //kbwidth=1248*5*(ptr.x/game.scale.width)
-        //}
-    //    game.world.removeAll();
-    //         drawDBox();
-     //create keys
-    //for (var i = 1; i <= 88; i++) {
-    //  drawKey(i);
-    //}
+            goFullscreen()
+        } 
+    }*/
+}
+
+function goFullscreen(){
+    //game.stage.scaleMode = 3;
+    game.scale.startFullScreen(false);  
+    //game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
+    //game.scale.scaleMode = Phaser.ScaleManager.RESIZE; //EXACT_FIT;
+    //game.scale.refresh(); 
+    //game.scale.resize(window.innerWidth, window.innerHeight);
+    game.world.removeAll();
+    //game.stage.scaleMode = 3;// Phaser.StageScaleMode.SHOW_ALL; //resize your window to see the stage resize toogame.stage.scale.setShowAll();game.stage.scale.refresh();
+    drawDBox();
+    //create keys
+    for (var i = 1; i <= 88; i++) {
+        drawKey(i);
     }
+    drawSlider();
+    drawCheckbox();
 }
 
 function update() {
@@ -372,7 +376,7 @@ function drawCheckbox(){
 }
 
 function drawDBox(){
-    kbheight = game.scale.height;
+    kbheight = game.scale.height-pY;
     //var bounds = new Phaser.Rectangle(Math.min(0,0-kbwidth+game.scale.width-50), 0, Math.max(game.scale.width,2*kbwidth+pX+100), game.scale.height+100);
     var bounds = new Phaser.Rectangle(Math.min(0,0-kbwidth+game.scale.width-50), 0, pX+100+kbwidth-Math.min(0,0-kbwidth+game.scale.width-50), game.scale.height+100);
     topBox = game.add.graphics(pX-12, pY-98)
@@ -400,8 +404,19 @@ function drawDBox(){
     text.setTextBounds(0, 0, kbwidth+24, 100-2);
     topBox.addChild(text);
     
+    FSBox = game.add.graphics(10, 10)
+    FSBox.lineStyle(0, 0xFF00FF, 1)
+    FSBox.beginFill(0xaabbcc, 1.0)
+    FSBox.drawRect(0, 0, 40, 40)
+    FSBox.anchor.set(0.5);
+    FSBox.inputEnabled = true;
+    FSBox.input.useHandCursor = true;
+    FSBox.events.onInputDown.add(goFullscreen, this);
     var text = game.add.text(10, 10, "⇱", style);  //"⇱ ★▪▫ ◽◾ ◻◼", sty
     text.setShadow(3, 3, 'rgba(0,0,0,0.5)', 2);
+    text.inputEnabled = true;
+    text.input.useHandCursor = true;
+    text.events.onInputDown.add(goFullscreen, this);
     //text.setTextBounds(0, 0, kbwidth+24, 100-2);
 }
 
