@@ -21,12 +21,13 @@ var cursor_low_right =  [3, 8, 15, 20, 27, 32, 39, 44, 51, 56, 63, 68, 75, 80, 8
 var cursor_low_middle =  [6, 11, 13, 18, 23, 25, 30, 35, 37, 42, 47, 49, 54, 59, 61, 66, 71, 73, 78, 83, 85]
 var cursor_high = {2: 16, 5: 64, 7: 88, 10: 136, 12: 160, 14: 184, 17: 232, 19: 256, 22: 304, 24: 328,  26: 352, 29: 400, 31: 424, 34: 472,  36: 496,  38: 520, 41: 568,  43: 592, 46: 640,  48: 664,  50: 688, 53: 736,  55: 760, 58: 808,  60: 832,  62: 856, 65: 904,  67: 928, 70: 976,  72: 1000,  74:1024, 77: 1072, 79: 1096, 82: 1144, 84: 1168, 86: 1192 } 
 var topBox;
+var chBoxTick;
 var dragBox;
 var kbwidth = 3*1248;
 var kbheight =210*2;
 var ptactive=[];
 var ptnote=[];
-var sustain = True;
+var sustain = false;
 ptactive[1]=false; //mouse pointer
 ptactive[2]=false; //mouse pointer
 ptactive[3]=false; //touch pointer
@@ -224,12 +225,12 @@ function activeover(ptr) {
 
 function update() {
     for(var ptri in game.input.pointers){//alert(ptri.id)//for(var pid=1; i<=ptactive.length;i++){
-        if (ptactive[game.input.pointers[ptri].id]==true && game.input.pointers[ptri].active==false) {
+        if (ptactive[game.input.pointers[ptri].id]==true && game.input.pointers[ptri].active==false && sustain == false) {
             stop_note(ptnote[game.input.pointers[ptri].id])
             ptactive[game.input.pointers[ptri].id]=false;
         }
     }
-        if (ptactive[0]==true && this.game.input.mousePointer.isDown==false) {
+        if (ptactive[0]==true && this.game.input.mousePointer.isDown==false && sustain == false) {
             stop_note(ptnote[0]);
             ptactive[0]=false;
         }
@@ -366,7 +367,7 @@ function drawCheckbox(){
     chBox.events.onInputDown.add(cb_click, this);
     //
     var style = { font: "bold 32px Arial", fill: "#fff", boundsAlignH: "center", boundsAlignV: "middle" };
-    var chBoxTick = game.add.text(game.scale.width*0.5-150+0.5*40+300+40, 10, "✓", style);
+    chBoxTick = game.add.text(game.scale.width*0.5-150+0.5*40+300+40, 10, "✓", style);
     chBoxTick.setShadow(3, 3, 'rgba(0,0,0,0.5)', 2);
 }
 
